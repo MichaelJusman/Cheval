@@ -6,8 +6,11 @@ public class PlayerController : MonoBehaviour
 {
     
     float horizontal;
+    float vertical;
     public float speed = 8f;
     public float jumpingPower = 16f;
+    public float fastfallSpeed = 2f;
+    public float tapjumpModifier = 0.5f;
     bool isFacingRight = true;
 
     bool canDash = true;
@@ -30,6 +33,7 @@ public class PlayerController : MonoBehaviour
         }
         
         horizontal = Input.GetAxisRaw("Horizontal");
+        vertical = Input.GetAxisRaw("Vertical");
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
@@ -38,12 +42,17 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
         {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * tapjumpModifier);
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
             StartCoroutine(Dash());
+        }
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            rb.AddForce(Vector2.down * fastfallSpeed);
         }
 
         Flip();
@@ -95,6 +104,7 @@ public class PlayerController : MonoBehaviour
         rb.gravityScale = originalGravity;
         isDashing = false;
         yield return new WaitForSeconds(dashingCooldown);
+        canDash = true;
     }
 
 
