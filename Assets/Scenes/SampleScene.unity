@@ -1348,7 +1348,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 8
   jumpingPower: 20
-  fastfallSpeed: 1000
+  fastfallForce: 1000
+  jumpstallForce: 500
   tapjumpModifier: 0.5
   dashingPower: 24
   dashingTime: 0.2

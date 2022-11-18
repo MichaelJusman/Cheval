@@ -9,9 +9,14 @@ public class PlayerController : MonoBehaviour
     float vertical;
     public float speed = 8f;
     public float jumpingPower = 16f;
-    public float fastfallSpeed = 2f;
+    public float fastfallForce = 2f;
+    public float jumpstallForce = 10f;
     public float tapjumpModifier = 0.5f;
+    public float stallCooldown = 1f;
     bool isFacingRight = true;
+
+    bool canStall = true;
+    bool isStalling;
 
     bool canDash = true;
     bool isDashing;
@@ -28,6 +33,11 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if (isDashing)
+        {
+            return;
+        }
+
+        if (isStalling)
         {
             return;
         }
@@ -52,7 +62,12 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.S))
         {
-            rb.AddForce(Vector2.down * fastfallSpeed);
+            rb.AddForce(Vector2.down * fastfallForce);
+        }
+        if (Input.GetKeyDown(KeyCode.W) && canStall)
+        {
+            StartCoroutine(Stall());
+
         }
 
         Flip();
@@ -105,6 +120,17 @@ public class PlayerController : MonoBehaviour
         isDashing = false;
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
+    }
+
+    IEnumerator Stall()
+    {
+        isStalling = true;
+        canStall = false;
+        rb.AddForce(Vector2.up * jumpstallForce);
+        yield return new WaitForSeconds(stallCooldown);
+        isStalling = false;
+        yield return new WaitForSeconds(stallCooldown);
+        canStall = true;
     }
 
 
