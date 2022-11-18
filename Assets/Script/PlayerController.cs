@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -24,11 +25,22 @@ public class PlayerController : MonoBehaviour
     public float dashingTime = 0.2f;
     public float dashingCooldown = 1f;
 
+    public float counterRange = 0.5f;
+
+    public GameObject punch;
+
+
     [SerializeField] Rigidbody2D rb;
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask groundLayer;
     [SerializeField] TrailRenderer trailRenderer;
+    [SerializeField] LayerMask enemyLayers;
+    [SerializeField] Transform counterPoint;
 
+    private void Start()
+    {
+        //punch.SetActive(false);
+    }
 
     void Update()
     {
@@ -76,12 +88,13 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonUp("Fire1"))
         {
-            Debug.Log("Im blocking");
+            Counter();
+            Debug.Log("Im countering");
         }
 
         if (Input.GetButtonUp("Fire2"))
         {
-            Debug.Log("Im countering");
+            Debug.Log("Im blocking");
         }
 
         Flip();
@@ -120,6 +133,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// The ability to dash forward, while dashing, cannot do any other action
+    /// </summary>
+    /// <returns></returns>
     IEnumerator Dash()
     {
         canDash = false;
@@ -136,6 +153,10 @@ public class PlayerController : MonoBehaviour
         canDash = true;
     }
 
+    /// <summary>
+    /// The ability to micro jump after any action, but freezing the control for 0.5 seconds
+    /// </summary>
+    /// <returns></returns>
     IEnumerator Stall()
     {
         isStalling = true;
@@ -147,5 +168,32 @@ public class PlayerController : MonoBehaviour
         canStall = true;
     }
 
+    /// <summary>
+    /// The ability to create a small hitbox infront of the player to counter-attack an enemy or projectile
+    /// </summary>
+    void Counter()
+    {
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(counterPoint.position, counterRange, enemyLayers);
+        //punch.SetActive(true);
+        //Destroy the enemy
+        foreach(Collider2D enemy in hitEnemies)
+        {
+            Debug.Log("We Hit " + enemy.name);
+            //Destroy(enemy);
+        }
+        //yield return new WaitForSeconds(1);
+        //punch.SetActive(false);
+    }
+
+    /// <summary>
+    /// Show hitbox in ediotr
+    /// </summary>
+    private void OnDrawGizmosSelected()
+    {
+        if (counterPoint == null)
+            return;
+        
+        Gizmos.DrawWireSphere(counterPoint.position, counterRange);
+    }
 
 }
