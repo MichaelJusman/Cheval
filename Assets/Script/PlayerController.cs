@@ -48,26 +48,40 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+            Debug.Log("I'm jumping");
         }
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * tapjumpModifier);
+            Debug.Log("I'm tap jumping");
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
             StartCoroutine(Dash());
+            Debug.Log("I'm dashing");
         }
 
         if (Input.GetKeyDown(KeyCode.S))
         {
             rb.AddForce(Vector2.down * fastfallForce);
+            Debug.Log("I'm fastfalling");
         }
         if (Input.GetKeyDown(KeyCode.W) && canStall)
         {
             StartCoroutine(Stall());
+            Debug.Log("I'm stalling");
+        }
 
+        if (Input.GetButtonUp("Fire1"))
+        {
+            Debug.Log("Im blocking");
+        }
+
+        if (Input.GetButtonUp("Fire2"))
+        {
+            Debug.Log("Im countering");
         }
 
         Flip();

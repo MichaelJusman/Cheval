@@ -1351,6 +1351,7 @@ MonoBehaviour:
   fastfallForce: 1000
   jumpstallForce: 500
   tapjumpModifier: 0.5
+  stallCooldown: 0.5
   dashingPower: 24
   dashingTime: 0.2
   dashingCooldown: 1
