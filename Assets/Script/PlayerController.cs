@@ -9,6 +9,12 @@ public class PlayerController : MonoBehaviour
     float horizontal;
     float vertical;
 
+    [Header("Player Variables")]
+    public int maxHealth = 100;
+    public int healthBonus = 0;
+    public int healing = 5;
+    int currentHealth;
+
     [Header("Movement Variables")]
     public float speed = 8f;
     bool isFacingRight = true;
@@ -38,6 +44,7 @@ public class PlayerController : MonoBehaviour
     public GameObject punch;
 
     [Header("Block Variables")]
+    public float blockRange = 1f;
 
     [Header("Wall Sliding Variables")]
     bool isWallSliding;
@@ -57,12 +64,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] TrailRenderer trailRenderer;
     [SerializeField] LayerMask enemyLayers;
     [SerializeField] Transform counterPoint;
+    [SerializeField] Transform blockPoint;
     [SerializeField] Transform wallCheck;
     [SerializeField] LayerMask wallLayer;
 
 
     private void Start()
     {
+        currentHealth = maxHealth + healthBonus;
+        
+        
         //punch.SetActive(false);
     }
 
@@ -128,6 +139,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonUp("Fire2"))
         {
+            Block();
             Debug.Log("Im blocking");
         }
 
@@ -158,6 +170,29 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
+    /// allows the player to take damage
+    /// </summary>
+    /// <param name="_damage"></param>
+    public void TakeDamage(int _damage)
+    {
+        currentHealth -= _damage;
+
+        if(currentHealth < 0)
+        {
+            Die();
+        }
+    }
+
+    /// <summary>
+    /// Kills the player
+    /// </summary>
+    void Die()
+    {
+        Debug.Log("im ded yo!");
+        Destroy(this.gameObject);
+    }
+
+    /// <summary>
     /// Check if player is grounded
     /// </summary>
     /// <returns></returns>
@@ -175,6 +210,10 @@ public class PlayerController : MonoBehaviour
         return Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
     }
 
+
+    /// <summary>
+    /// Check if the player is wallsliding
+    /// </summary>
     void WallSlide()
     {
         if (IsWalled() && !IsGrounded() && horizontal != 0f)
@@ -188,6 +227,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// check if the player can walljump
+    /// </summary>
     void WallJump()
     {
         if (isWallSliding)
@@ -221,6 +263,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// stop walljumping
+    /// </summary>
     void StopWallJumping()
     {
         isWallJumping = false;
@@ -293,12 +338,31 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// Show hitbox in ediotr
+    /// ability to create a shiled that surround the player protecting them for a brief moment
+    /// </summary>
+    void Block()
+    {
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(blockPoint.position, blockRange, enemyLayers);
+        //punch.SetActive(true);
+        //Destroy the enemy
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            Debug.Log("We block " + enemy.name);
+            //Destroy(enemy);
+        }
+        //yield return new WaitForSeconds(1);
+        //punch.SetActive(false);
+    }
+
+    /// <summary>
+    /// Show hitbox in editor
     /// </summary>
     private void OnDrawGizmosSelected()
     {
-        if (counterPoint == null)
+        if (counterPoint && blockPoint == null)
             return;
+
+        Gizmos.DrawWireSphere(blockPoint.position, blockRange);
         
         Gizmos.DrawWireSphere(counterPoint.position, counterRange);
     }
