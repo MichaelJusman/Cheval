@@ -8,30 +8,36 @@ public class PlayerController : MonoBehaviour
     
     float horizontal;
     float vertical;
+
+    [Header("Movement Variables")]
     public float speed = 8f;
-    public float jumpingPower = 16f;
-    public float doubleJumpingPower = 8f;
-    public float fastfallForce = 2f;
-    public float jumpstallForce = 10f;
-    public float tapjumpModifier = 0.5f;
-    public float stallCooldown = 1f;
     bool isFacingRight = true;
 
+    [Header("Stalling Variables")]
     bool canStall = true;
     bool isStalling;
+    public float stallCooldown = 0.5f;
+    public float jumpstallForce = 500f;
 
+    [Header("Jump Variables")]
     bool doubleJump;
+    public float jumpingPower = 20f;
+    public float doubleJumpingPower = 16f;
+    public float fastfallForce = 1000f;
+    public float tapjumpModifier = 0.5f;
 
+    [Header("Dash Variables")]
     bool canDash = true;
     bool isDashing;
     public float dashingPower = 24f;
     public float dashingTime = 0.2f;
     public float dashingCooldown = 1f;
 
-
+    [Header("Counter Variables")]
     public float counterRange = 0.5f;
-
     public GameObject punch;
+
+    [Header("Block Variables")]
 
     [Header("Wall Sliding Variables")]
     bool isWallSliding;
