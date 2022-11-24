@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     public int maxHealth = 100;
     public int healthBonus = 0;
     public int healing = 5;
-    int currentHealth;
+    public int currentHealth;
 
     [Header("Movement Variables")]
     public float speed = 8f;
@@ -169,6 +169,16 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
     }
 
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Baguette"))
+        {
+            Debug.Log("Im hit, i have" + currentHealth + " health left");
+            TakeDamage(10);
+        }
+    }
+
     /// <summary>
     /// allows the player to take damage
     /// </summary>
@@ -177,7 +187,7 @@ public class PlayerController : MonoBehaviour
     {
         currentHealth -= _damage;
 
-        if(currentHealth < 0)
+        if (currentHealth < 0)
         {
             Die();
         }
@@ -366,5 +376,7 @@ public class PlayerController : MonoBehaviour
         
         Gizmos.DrawWireSphere(counterPoint.position, counterRange);
     }
+
+
 
 }
