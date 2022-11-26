@@ -42,14 +42,14 @@ public class PlayerController : Singleton<PlayerController>
     [Header("Counter Variables")]
     public float counterRange = 0.5f;
     public GameObject punch;
-    bool isCountering = false;
-    bool canCounter = true;
-    public float counterStartUp = 0.3f;
+    //bool isCountering = false;
+    //bool canCounter = true;
+    //public float counterStartUp = 0.3f;
 
     [Header("Block Variables")]
     public float blockRange = 1f;
-    bool isBlocking = false;
-    bool canBlock = true;
+    //bool isBlocking = false;
+    //bool canBlock = true;
 
     [Header("Wall Sliding Variables")]
     bool isWallSliding;
@@ -356,7 +356,7 @@ public class PlayerController : Singleton<PlayerController>
         //Destroy the enemy
         foreach (Collider2D enemy in hitEnemies)
         {
-            //enemy.GetComponent<>
+            enemy.GetComponent<Bread>().Destroy();
             Debug.Log("We Hit " + enemy.name);
             //Destroy(enemy);
         }
@@ -375,7 +375,7 @@ public class PlayerController : Singleton<PlayerController>
         //Destroy the enemy
         foreach (Collider2D enemy in hitEnemies)
         {
-            
+            enemy.GetComponent<Bread>().Destroy();
             Debug.Log("We block " + enemy.name);
             //Destroy(enemy);
         }

@@ -14,7 +14,7 @@ public class Bread : GameBehaviour
         Physics2D.IgnoreLayerCollision(3, 3);
     }
 
-    public void TakeDamage()
+    public void Destroy()
     {
         maxHealth--;
 
@@ -26,6 +26,7 @@ public class Bread : GameBehaviour
     void Die()
     {
         Debug.Log(gameObject + "is Dead");
+        Destroy(gameObject);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
