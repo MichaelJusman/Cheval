@@ -42,9 +42,14 @@ public class PlayerController : Singleton<PlayerController>
     [Header("Counter Variables")]
     public float counterRange = 0.5f;
     public GameObject punch;
+    bool isCountering = false;
+    bool canCounter = true;
+    public float counterStartUp = 0.3f;
 
     [Header("Block Variables")]
     public float blockRange = 1f;
+    bool isBlocking = false;
+    bool canBlock = true;
 
     [Header("Wall Sliding Variables")]
     bool isWallSliding;
@@ -330,6 +335,17 @@ public class PlayerController : Singleton<PlayerController>
         canStall = true;
     }
 
+    //IEnumerator Counter()
+    //{
+    //    isCountering = true;
+    //    canCounter = false;
+    //    Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(counterPoint.position, counterRange, enemyLayers);
+    //    yield return new WaitForSeconds(2);
+    //    isCountering = false;
+    //    yield return new WaitForSeconds(stallCooldown);
+    //    canCounter = true;
+    //}
+
     /// <summary>
     /// The ability to create a small hitbox infront of the player to counter-attack an enemy or projectile
     /// </summary>
@@ -338,8 +354,9 @@ public class PlayerController : Singleton<PlayerController>
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(counterPoint.position, counterRange, enemyLayers);
         //punch.SetActive(true);
         //Destroy the enemy
-        foreach(Collider2D enemy in hitEnemies)
+        foreach (Collider2D enemy in hitEnemies)
         {
+            //enemy.GetComponent<>
             Debug.Log("We Hit " + enemy.name);
             //Destroy(enemy);
         }
@@ -352,11 +369,13 @@ public class PlayerController : Singleton<PlayerController>
     /// </summary>
     void Block()
     {
+        
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(blockPoint.position, blockRange, enemyLayers);
         //punch.SetActive(true);
         //Destroy the enemy
         foreach (Collider2D enemy in hitEnemies)
         {
+            
             Debug.Log("We block " + enemy.name);
             //Destroy(enemy);
         }
