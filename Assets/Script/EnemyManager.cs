@@ -18,7 +18,7 @@ public class EnemyManager : MonoBehaviour
     public float spawnCount = 10f;
 
     [Header("Baguette")]
-    public float baguetteSpeed = 10f;
+    public float baguetteSpeed = 1000f;
 
     private void Update()
     {
@@ -31,8 +31,11 @@ public class EnemyManager : MonoBehaviour
     void FireBaguette()
     {
         GameObject breadInstantiate = Instantiate(breadType[0], breadSpawner[0].position, breadSpawner[0].rotation);
-        breadInstantiate.GetComponent<Rigidbody2D>().AddForce(breadSpawner[0].forward * baguetteSpeed);
-        
+        breadInstantiate.GetComponent<Rigidbody2D>().AddForce(breadSpawner[0].right * -baguetteSpeed);
+
+
+
+
     }
 
 

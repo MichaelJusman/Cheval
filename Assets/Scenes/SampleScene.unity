@@ -987,10 +987,10 @@ MonoBehaviour:
   breadSpawner:
   - {fileID: 1670601232}
   breadType:
-  - {fileID: 4507682637714145797, guid: 05091c57816aec54d912dc3f2de63bec, type: 3}
+  - {fileID: 4304604267846281487, guid: d434e9da13cf2e849be577264b95ecb8, type: 3}
   bread: []
   spawnCount: 10
-  baguetteSpeed: 10000
+  baguetteSpeed: 100
 --- !u!4 &994811333
 Transform:
   m_ObjectHideFlags: 0
