@@ -73,10 +73,14 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField] Transform wallCheck;
     [SerializeField] LayerMask wallLayer;
 
+    Animator anim;
+
 
     private void Start()
     {
         currentHealth = maxHealth + healthBonus;
+
+        anim = GetComponent<Animator>();
         
         
         //punch.SetActive(false);
@@ -352,6 +356,8 @@ public class PlayerController : Singleton<PlayerController>
     void Counter()
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(counterPoint.position, counterRange, enemyLayers);
+
+        anim.SetTrigger("IsCountering");
         //punch.SetActive(true);
         //Destroy the enemy
         foreach (Collider2D enemy in hitEnemies)
