@@ -20,24 +20,24 @@ public class PlayerController : Singleton<PlayerController>
     bool isFacingRight = true;
 
     [Header("Stalling Variables")]
-    bool canStall = true;
-    bool isStalling;
     public float stallCooldown = 0.5f;
     public float jumpstallForce = 500f;
+    bool canStall = true;
+    bool isStalling;
 
     [Header("Jump Variables")]
-    bool doubleJump;
     public float jumpingPower = 20f;
     public float doubleJumpingPower = 16f;
     public float fastfallForce = 1000f;
     public float tapjumpModifier = 0.5f;
+    bool doubleJump;
 
     [Header("Dash Variables")]
-    bool canDash = true;
-    bool isDashing;
     public float dashingPower = 24f;
     public float dashingTime = 0.2f;
     public float dashingCooldown = 1f;
+    bool isDashing;
+    bool canDash = true;
 
     [Header("Counter Variables")]
     public float counterRange = 0.5f;
@@ -52,15 +52,15 @@ public class PlayerController : Singleton<PlayerController>
     //bool canBlock = true;
 
     [Header("Wall Sliding Variables")]
-    bool isWallSliding;
     public float wallSlidingSpeed = 2f;
+    bool isWallSliding;
 
     [Header("Wall Jumping Variables")]
+    public float wallJumpingTime = 2f;
+    public float wallJumpingDuration = 0.4f;
     bool isWallJumping;
     float wallJumpingDirection;
-    public float wallJumpingTime = 2f;
     float wallJumpingCounter;
-    public float wallJumpingDuration = 0.4f;
     Vector2 wallJumpingPower = new Vector2(8f, 16f);
 
     [SerializeField] Rigidbody2D rb;
@@ -114,6 +114,8 @@ public class PlayerController : Singleton<PlayerController>
                 Debug.Log("I'm jumping");
 
                 doubleJump = !doubleJump;
+
+                anim.SetTrigger("Jump");
             }
         }
 
@@ -121,6 +123,8 @@ public class PlayerController : Singleton<PlayerController>
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * tapjumpModifier);
             Debug.Log("I'm tap jumping");
+
+            anim.SetTrigger("Jump");
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
@@ -133,6 +137,7 @@ public class PlayerController : Singleton<PlayerController>
         {
             rb.AddForce(Vector2.down * fastfallForce);
             Debug.Log("I'm fastfalling");
+            anim.SetTrigger("Fall");
         }
         if (Input.GetKeyDown(KeyCode.W) && canStall)
         {
@@ -183,8 +188,9 @@ public class PlayerController : Singleton<PlayerController>
     {
         if (collision.collider.CompareTag("Baguette"))
         {
-            Debug.Log("Im hit, i have" + currentHealth + " health left");
             TakeDamage(10);
+            Debug.Log("Im hit, i have" + currentHealth + " health left");
+            
         }
     }
 
@@ -333,6 +339,7 @@ public class PlayerController : Singleton<PlayerController>
         isStalling = true;
         canStall = false;
         rb.AddForce(Vector2.up * jumpstallForce);
+        anim.SetTrigger("Stall");
         yield return new WaitForSeconds(stallCooldown);
         isStalling = false;
         yield return new WaitForSeconds(stallCooldown);
@@ -357,15 +364,18 @@ public class PlayerController : Singleton<PlayerController>
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(counterPoint.position, counterRange, enemyLayers);
 
-        anim.SetTrigger("IsCountering");
+        anim.SetTrigger("Counter");
         //punch.SetActive(true);
         //Destroy the enemy
         foreach (Collider2D enemy in hitEnemies)
         {
             enemy.GetComponent<Bread>().Destroy();
             Debug.Log("We Hit " + enemy.name);
+            Idle();
             //Destroy(enemy);
         }
+
+        
         //yield return new WaitForSeconds(1);
         //punch.SetActive(false);
     }
@@ -377,6 +387,8 @@ public class PlayerController : Singleton<PlayerController>
     {
         
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(blockPoint.position, blockRange, enemyLayers);
+
+        anim.SetTrigger("Block");
         //punch.SetActive(true);
         //Destroy the enemy
         foreach (Collider2D enemy in hitEnemies)
@@ -385,10 +397,16 @@ public class PlayerController : Singleton<PlayerController>
             Debug.Log("We block " + enemy.name);
             //Destroy(enemy);
         }
+
+        
         //yield return new WaitForSeconds(1);
         //punch.SetActive(false);
     }
 
+    void Idle()
+    {
+        anim.SetTrigger("Idle");
+    }
     /// <summary>
     /// Show hitbox in editor
     /// </summary>
