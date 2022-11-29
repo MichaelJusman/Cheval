@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 8156038714569920517}
   - component: {fileID: 4574642280372365006}
   - component: {fileID: 5863023550230646988}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Circle
-  m_TagString: Untagged
+  m_TagString: Baguette
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
