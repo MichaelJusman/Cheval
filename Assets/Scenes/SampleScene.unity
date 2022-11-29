@@ -1170,7 +1170,7 @@ MonoBehaviour:
   positionToMoveTo: {x: 0, y: 0}
   baguetteSpeed: 100
   croissantSpeed: 1000
-  broischeSpeed: 1000
+  broischeSpeed: 300
 --- !u!4 &994811333
 Transform:
   m_ObjectHideFlags: 0

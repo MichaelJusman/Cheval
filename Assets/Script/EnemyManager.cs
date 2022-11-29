@@ -93,7 +93,7 @@ public class EnemyManager : Singleton<EnemyManager>
     void FireBroische()
     {
         GameObject breadInstantiate = Instantiate(breadType[1], breadSpawner[0].position, breadSpawner[0].rotation);
-        breadInstantiate.GetComponent<Rigidbody2D>().AddForce(breadSpawner[0].right * broischeSpeed);
+        breadInstantiate.GetComponent<Rigidbody2D>().AddForce((_PC.transform.position - breadSpawner[0].position) * broischeSpeed);
     }
 
     IEnumerator LerpPosition(Vector2 targetPosition, float duration)
