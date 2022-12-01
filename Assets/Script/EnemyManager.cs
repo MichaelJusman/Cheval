@@ -38,8 +38,11 @@ public class EnemyManager : Singleton<EnemyManager>
 
     private float startTime;
 
+
     [Header("Broiche")]
     public float broischeSpeed = 1000f;
+
+    Animator anim;
 
     private void Start()
     {
@@ -61,6 +64,11 @@ public class EnemyManager : Singleton<EnemyManager>
         if (Input.GetKeyDown(KeyCode.I))
         {
             FireBroische();
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            anim.SetTrigger("Beta");
         }
     }
 
