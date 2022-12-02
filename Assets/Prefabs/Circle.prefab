@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8156038714569920517}
   - component: {fileID: 4574642280372365006}
   - component: {fileID: 5863023550230646988}
+  - component: {fileID: 6339709424971814379}
   m_Layer: 3
   m_Name: Circle
   m_TagString: Baguette
@@ -123,3 +124,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &6339709424971814379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3063869756218121280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8a49b2e20fddc14e8591e533e2bf6d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

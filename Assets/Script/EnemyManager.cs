@@ -74,8 +74,8 @@ public class EnemyManager : Singleton<EnemyManager>
 
     void FireBaguette()
     {
-        GameObject breadInstantiate = Instantiate(breadType[0], breadSpawner[0].position, breadSpawner[0].rotation);
-        breadInstantiate.GetComponent<Rigidbody2D>().AddForce(breadSpawner[0].right * -baguetteSpeed);
+        GameObject breadInstantiate = Instantiate(breadType[UnityEngine.Random.Range(0, 2)], breadSpawner[UnityEngine.Random.Range(0, 6)].position, breadSpawner[UnityEngine.Random.Range(0, 6)].rotation);
+        breadInstantiate.GetComponent<Rigidbody2D>().AddForce((_PC.transform.position - breadSpawner[UnityEngine.Random.Range(0, 6)].position) * broischeSpeed);
     }
 
     void FireCroissant()
