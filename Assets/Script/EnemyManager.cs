@@ -40,7 +40,7 @@ public class EnemyManager : Singleton<EnemyManager>
 
 
     [Header("Broiche")]
-    public float broischeSpeed = 1000f;
+    public float broischeSpeed = 300f;
 
     Animator anim;
 
@@ -74,8 +74,8 @@ public class EnemyManager : Singleton<EnemyManager>
 
     void FireBaguette()
     {
-        GameObject breadInstantiate = Instantiate(breadType[UnityEngine.Random.Range(0, 2)], breadSpawner[UnityEngine.Random.Range(0, 6)].position, breadSpawner[UnityEngine.Random.Range(0, 6)].rotation);
-        breadInstantiate.GetComponent<Rigidbody2D>().AddForce((_PC.transform.position - breadSpawner[UnityEngine.Random.Range(0, 6)].position) * broischeSpeed);
+        GameObject breadInstantiate = Instantiate(breadType[UnityEngine.Random.Range(0, 1)], breadSpawner[UnityEngine.Random.Range(0, 5)].position, breadSpawner[UnityEngine.Random.Range(0, 5)].rotation);
+        breadInstantiate.GetComponent<Rigidbody2D>().AddForce((_PC.transform.position - breadSpawner[UnityEngine.Random.Range(0, 5)].position) * broischeSpeed);
     }
 
     void FireCroissant()
