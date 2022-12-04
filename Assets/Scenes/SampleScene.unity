@@ -1313,7 +1313,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 841690518}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: WallCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1345,7 +1345,7 @@ GameObject:
   m_Component:
   - component: {fileID: 922033201}
   - component: {fileID: 922033202}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Punch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1463,8 +1463,8 @@ MonoBehaviour:
   spawnCount: 10
   positionToMoveTo: {x: 0, y: 0}
   baguetteSpeed: 100
-  croissantSpeed: 1000
-  broischeSpeed: 300
+  croissantSpeed: 100
+  broischeSpeed: 100
 --- !u!4 &994811333
 Transform:
   m_ObjectHideFlags: 0
@@ -1843,7 +1843,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1194018917}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1906,7 +1906,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1245818176}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: BlockPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1937,7 +1937,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1372107747}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: CounterPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2696,7 +2696,7 @@ GameObject:
   - component: {fileID: 1991267855}
   - component: {fileID: 1991267854}
   - component: {fileID: 1991267856}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
