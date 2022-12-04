@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : Singleton<PlayerController>
 {
@@ -81,7 +82,8 @@ public class PlayerController : Singleton<PlayerController>
         currentHealth = maxHealth + healthBonus;
 
         anim = GetComponent<Animator>();
-        
+
+        _UI.SetMaxHealth(currentHealth);
         
         //punch.SetActive(false);
     }
@@ -194,6 +196,8 @@ public class PlayerController : Singleton<PlayerController>
         }
     }
 
+
+
     /// <summary>
     /// allows the player to take damage
     /// </summary>
@@ -202,10 +206,14 @@ public class PlayerController : Singleton<PlayerController>
     {
         currentHealth -= _damage;
 
+        
+
         if (currentHealth < 0)
         {
             Die();
         }
+
+        _UI.UpdateHealthBar(currentHealth);
     }
 
     /// <summary>
@@ -371,6 +379,7 @@ public class PlayerController : Singleton<PlayerController>
         {
             enemy.GetComponent<Bread>().Destroy();
             Debug.Log("We Hit " + enemy.name);
+            _GM.OnBreadCountered();
             Idle();
             //Destroy(enemy);
         }
@@ -395,6 +404,7 @@ public class PlayerController : Singleton<PlayerController>
         {
             enemy.GetComponent<Bread>().Destroy();
             Debug.Log("We block " + enemy.name);
+            _GM.OnBreadtBlocked();
             //Destroy(enemy);
         }
 
@@ -407,6 +417,7 @@ public class PlayerController : Singleton<PlayerController>
     {
         anim.SetTrigger("Idle");
     }
+
     /// <summary>
     /// Show hitbox in editor
     /// </summary>
@@ -419,6 +430,8 @@ public class PlayerController : Singleton<PlayerController>
         
         Gizmos.DrawWireSphere(counterPoint.position, counterRange);
     }
+
+
 
 
 

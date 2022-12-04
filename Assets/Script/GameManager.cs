@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 using static GameManager;
 
 public enum GameState
@@ -15,6 +16,8 @@ public class GameManager : Singleton<GameManager>
 {
     public GameState gameState;
 
+    public int score;
+    public int scoreMultiplier = 1;
 
     public void ChangeGameState(GameState _gameState)
     {
@@ -34,5 +37,21 @@ public class GameManager : Singleton<GameManager>
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void AddScore(int _score)
+    {
+        score += _score * scoreMultiplier;
+        _UI.UpdateScore(score);
+    }
+
+    public void OnBreadtBlocked()
+    {
+        AddScore(1);
+    }
+
+    public void OnBreadCountered()
+    {
+        AddScore(3);
     }
 }

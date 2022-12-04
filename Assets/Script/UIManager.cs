@@ -1,18 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class UIManager : Singleton<UIManager>
 {
-    // Start is called before the first frame update
-    void Start()
+    public TMP_Text scoreText;
+
+    public Slider healthBarSlider;
+
+
+    public void SetMaxHealth(int _health)
     {
-        
+        healthBarSlider.maxValue = _health;
+        healthBarSlider.value = _health;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateHealthBar(int _health)
     {
-        
+        healthBarSlider.value = _health;
+    }
+
+    public void UpdateScore(int _score)
+    {
+        scoreText.text = "Score:" + _score;
     }
 }
