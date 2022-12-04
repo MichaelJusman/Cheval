@@ -329,6 +329,7 @@ public class PlayerController : Singleton<PlayerController>
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f;
         rb.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
+        anim.SetTrigger("Dash");
         trailRenderer.emitting = true;
         yield return new WaitForSeconds(dashingTime);
         trailRenderer.emitting = false;
