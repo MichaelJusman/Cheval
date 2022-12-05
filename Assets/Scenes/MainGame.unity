@@ -1756,11 +1756,13 @@ MonoBehaviour:
   breadType:
   - {fileID: 4304604267846281487, guid: d434e9da13cf2e849be577264b95ecb8, type: 3}
   - {fileID: 3063869756218121280, guid: b13046ba9e0f3eb41b63b8309f183e97, type: 3}
+  - {fileID: 5819990733954606703, guid: 6967121abab8df046a5838bc78727c6f, type: 3}
   bread: []
   spawnCount: 10
   positionToMoveTo: {x: 0, y: 0}
   baguetteSpeed: 100
   croissantSpeed: 100
+  cromerangTime: 3
   broischeSpeed: 100
 --- !u!4 &994811333
 Transform:
@@ -1999,7 +2001,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3b4b9e67c1f02884180bdcbbc58a4287, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -3947,3 +3949,60 @@ Transform:
   m_Father: {fileID: 534528769}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &6958450666751031518
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1900418330063672682, guid: 6967121abab8df046a5838bc78727c6f, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1900418330063672682, guid: 6967121abab8df046a5838bc78727c6f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.34060788
+      objectReference: {fileID: 0}
+    - target: {fileID: 1900418330063672682, guid: 6967121abab8df046a5838bc78727c6f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.8241528
+      objectReference: {fileID: 0}
+    - target: {fileID: 1900418330063672682, guid: 6967121abab8df046a5838bc78727c6f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1900418330063672682, guid: 6967121abab8df046a5838bc78727c6f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1900418330063672682, guid: 6967121abab8df046a5838bc78727c6f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1900418330063672682, guid: 6967121abab8df046a5838bc78727c6f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1900418330063672682, guid: 6967121abab8df046a5838bc78727c6f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1900418330063672682, guid: 6967121abab8df046a5838bc78727c6f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1900418330063672682, guid: 6967121abab8df046a5838bc78727c6f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1900418330063672682, guid: 6967121abab8df046a5838bc78727c6f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5819990733954606703, guid: 6967121abab8df046a5838bc78727c6f, type: 3}
+      propertyPath: m_Name
+      value: Pain
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6967121abab8df046a5838bc78727c6f, type: 3}

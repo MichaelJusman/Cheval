@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEditor.Tilemaps;
 using UnityEngine;
 
@@ -25,6 +26,7 @@ public class EnemyManager : Singleton<EnemyManager>
 
     [Header("Croissant")]
     public float croissantSpeed = 1000f;
+    public float cromerangTime = 3f;
     //public float duration = 3f;
     //public Vector2 maxDistance = new Vector2(0, 30);
     //public Vector2 startDistance = new Vector2(0, 0);
@@ -46,7 +48,7 @@ public class EnemyManager : Singleton<EnemyManager>
 
     private void Start()
     {
-        
+
     }
 
     private void Update()
@@ -74,8 +76,8 @@ public class EnemyManager : Singleton<EnemyManager>
 
     void FireBaguette()
     {
-        GameObject breadInstantiate = Instantiate(breadType[UnityEngine.Random.Range(0, 1)], breadSpawner[UnityEngine.Random.Range(0, 5)].position, breadSpawner[UnityEngine.Random.Range(0, 5)].rotation);
-        breadInstantiate.GetComponent<Rigidbody2D>().AddForce((_PC.transform.position - breadSpawner[UnityEngine.Random.Range(0, 5)].position) * broischeSpeed);
+        GameObject breadInstantiate = Instantiate(breadType[UnityEngine.Random.Range(0, breadType.Length)], breadSpawner[UnityEngine.Random.Range(0, breadSpawner.Length)].position, breadSpawner[UnityEngine.Random.Range(0, breadSpawner.Length)].rotation);
+        breadInstantiate.GetComponent<Rigidbody2D>().AddForce((_PC.transform.position - breadSpawner[UnityEngine.Random.Range(0, breadSpawner.Length)].position) * broischeSpeed);
     }
 
     void FireCroissant()
@@ -83,6 +85,22 @@ public class EnemyManager : Singleton<EnemyManager>
         GameObject breadInstantiate = Instantiate(breadType[0], breadSpawner[0].position, breadSpawner[0].rotation);
         breadInstantiate.GetComponent<Rigidbody2D>().AddForce(breadSpawner[0].right * -baguetteSpeed);
     }
+
+    //IEnumerator Cromerang()
+    //{
+    //    float timeElapsed = 0;
+    //    while (timeElapsed < cromerangTime)
+    //    {
+    //        GameObject cromerangInstantiate = Instantiate(breadType[0], breadSpawner[UnityEngine.Random.Range(0, breadSpawner.Length)].position, breadSpawner[UnityEngine.Random.Range(0, breadSpawner.Length)].rotation);
+    //        Vector2 originPoint = breadSpawner[UnityEngine.Random.Range(0, breadSpawner.Length)].position;
+    //        cromerangInstantiate.transform.position.Lerp(originPoint, _PC.transform.position, timeElapsed / cromerangTime);
+    //    }
+
+
+
+    //    yield return new WaitForSeconds(1);
+    //}
+
 
     //IEnumerator Croissant()
     //{
