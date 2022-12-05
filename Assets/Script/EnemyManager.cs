@@ -71,6 +71,9 @@ public class EnemyManager : Singleton<EnemyManager>
         if(Input.GetKeyDown(KeyCode.C))
             StartCoroutine(Cromerang());
 
+        if (Input.GetKeyDown(KeyCode.K))
+            Cromerang1();
+
         if (Input.GetKeyDown(KeyCode.L))
         {
             anim.SetTrigger("Beta");
@@ -94,12 +97,25 @@ public class EnemyManager : Singleton<EnemyManager>
         float timeElapsed = 0;
         while (timeElapsed < cromerangTime)
         {
-            GameObject cromerangInstantiate = Instantiate(breadType[1], breadSpawner[UnityEngine.Random.Range(0, breadSpawner.Length)].position, breadSpawner[UnityEngine.Random.Range(0, breadSpawner.Length)].rotation);
-            Vector2 originPoint = breadSpawner[UnityEngine.Random.Range(0, breadSpawner.Length)].position;
+            GameObject cromerangInstantiate = Instantiate(breadType[1], breadSpawner[2].position, breadSpawner[2].rotation);
+            Vector2 originPoint = breadSpawner[2].position;
             cromerangInstantiate.transform.position = Vector2.Lerp(originPoint, _PC.transform.position, timeElapsed / cromerangTime);
             timeElapsed += Time.deltaTime;
             yield return null;
             
+        }
+    }
+
+    void Cromerang1()
+    {
+        float timeElapsed = 0;
+        while (timeElapsed < cromerangTime)
+        {
+            GameObject cromerangInstantiate = Instantiate(breadType[1], breadSpawner[2].position, breadSpawner[2].rotation);
+            Vector2 originPoint = breadSpawner[2].position;
+            cromerangInstantiate.transform.position = Vector2.Lerp(originPoint, _PC.transform.position, timeElapsed / cromerangTime);
+            timeElapsed += Time.deltaTime;
+            return;
         }
     }
 
