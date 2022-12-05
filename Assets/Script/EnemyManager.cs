@@ -36,7 +36,7 @@ public class EnemyManager : Singleton<EnemyManager>
     //bool reverse = false;
     //float timeElapsed;
     //float lerpDuration = 3f;
-    //Transform valueToLerp;
+    Transform valueToLerp;
 
     private float startTime;
 
@@ -68,6 +68,9 @@ public class EnemyManager : Singleton<EnemyManager>
             FireBroische();
         }
 
+        if(Input.GetKeyDown(KeyCode.C))
+            StartCoroutine(Cromerang());
+
         if (Input.GetKeyDown(KeyCode.L))
         {
             anim.SetTrigger("Beta");
@@ -86,20 +89,19 @@ public class EnemyManager : Singleton<EnemyManager>
         breadInstantiate.GetComponent<Rigidbody2D>().AddForce(breadSpawner[0].right * -baguetteSpeed);
     }
 
-    //IEnumerator Cromerang()
-    //{
-    //    float timeElapsed = 0;
-    //    while (timeElapsed < cromerangTime)
-    //    {
-    //        GameObject cromerangInstantiate = Instantiate(breadType[0], breadSpawner[UnityEngine.Random.Range(0, breadSpawner.Length)].position, breadSpawner[UnityEngine.Random.Range(0, breadSpawner.Length)].rotation);
-    //        Vector2 originPoint = breadSpawner[UnityEngine.Random.Range(0, breadSpawner.Length)].position;
-    //        cromerangInstantiate.transform.position.Lerp(originPoint, _PC.transform.position, timeElapsed / cromerangTime);
-    //    }
-
-
-
-    //    yield return new WaitForSeconds(1);
-    //}
+    IEnumerator Cromerang()
+    {
+        float timeElapsed = 0;
+        while (timeElapsed < cromerangTime)
+        {
+            GameObject cromerangInstantiate = Instantiate(breadType[1], breadSpawner[UnityEngine.Random.Range(0, breadSpawner.Length)].position, breadSpawner[UnityEngine.Random.Range(0, breadSpawner.Length)].rotation);
+            Vector2 originPoint = breadSpawner[UnityEngine.Random.Range(0, breadSpawner.Length)].position;
+            cromerangInstantiate.transform.position = Vector2.Lerp(originPoint, _PC.transform.position, timeElapsed / cromerangTime);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+            
+        }
+    }
 
 
     //IEnumerator Croissant()
