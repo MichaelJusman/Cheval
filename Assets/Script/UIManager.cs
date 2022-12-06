@@ -9,6 +9,7 @@ public class UIManager : Singleton<UIManager>
     public TMP_Text scoreText;
 
     public Slider healthBarSlider;
+    public TMP_Text healthBarText;
 
 
     public void SetMaxHealth(int _health)
@@ -20,6 +21,7 @@ public class UIManager : Singleton<UIManager>
     public void UpdateHealthBar(int _health)
     {
         healthBarSlider.value = _health;
+        healthBarText.text = _health.ToString();
     }
 
     public void UpdateScore(int _score)

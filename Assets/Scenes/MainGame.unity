@@ -3818,6 +3818,7 @@ MonoBehaviour:
   dontDestroy: 0
   scoreText: {fileID: 1003242196}
   healthBarSlider: {fileID: 1180534305}
+  healthBarText: {fileID: 2020210423}
 --- !u!1 &1600435508
 GameObject:
   m_ObjectHideFlags: 0
