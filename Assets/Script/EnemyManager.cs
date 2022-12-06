@@ -10,7 +10,8 @@ public class EnemyManager : Singleton<EnemyManager>
     {
         Baguette,
         Croissant,
-        Broiche
+        Broiche,
+        Pain
     }
 
     public Transform[] breadSpawner;    //spawn points for the bread projectile
@@ -26,7 +27,7 @@ public class EnemyManager : Singleton<EnemyManager>
 
     [Header("Croissant")]
     public float croissantSpeed = 1000f;
-    public float cromerangTime = 3f;
+    public float cromerangTime = 1f;
     //public float duration = 3f;
     //public Vector2 maxDistance = new Vector2(0, 30);
     //public Vector2 startDistance = new Vector2(0, 0);
