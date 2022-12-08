@@ -415,8 +415,7 @@ public class PlayerController : Singleton<PlayerController>
         {
             enemy.GetComponent<Bread>().Destroy();
             Debug.Log("We block " + enemy.name);
-            _GM.OnBreadtBlocked();
-            _GM.AddBlockCounter();
+            _GM.OnBreadBlocked();
             //Destroy(enemy);
         }
 

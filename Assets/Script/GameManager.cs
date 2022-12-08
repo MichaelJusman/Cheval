@@ -51,19 +51,20 @@ public class GameManager : Singleton<GameManager>
     public void AddBlockCounter()
     {
         blockCounter ++;
-        _UI.UpdateHealthBar(blockCounter);
+        _UI.UpdateBlockCounter(blockCounter);
         if (blockCounter == 10)
         {
             _PC.Heal(5);
             blockCounter = 0;
-            _UI.UpdateHealthBar(blockCounter);
+            _UI.ResetBlockCounter();
         }
 
     }
 
-    public void OnBreadtBlocked()
+    public void OnBreadBlocked()
     {
         AddScore(1);
+        AddBlockCounter();
     }
 
     public void OnBreadCountered()
