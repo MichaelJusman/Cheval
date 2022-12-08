@@ -205,7 +205,7 @@ public class PlayerController : Singleton<PlayerController>
         }
         else
         {
-            _GM.AddScore(1);
+            _GM.AddScore(2);
         }
     }
 
@@ -218,7 +218,7 @@ public class PlayerController : Singleton<PlayerController>
     {
         currentHealth -= _damage;
         _UI.UpdateHealthBar(currentHealth);
-        _UI.ResetBlockCounter();
+        _GM.ResetBlockCounter();
         if (currentHealth < 0)
         {
             Die();

@@ -55,10 +55,31 @@ public class GameManager : Singleton<GameManager>
         if (blockCounter == 10)
         {
             _PC.Heal(5);
-            blockCounter = 0;
-            _UI.ResetBlockCounter();
+            ResetBlockCounter();
         }
+    }
 
+    public void ResetBlockCounter()
+    {
+        blockCounter = 0;
+        _UI.UpdateBlockCounter(blockCounter);
+    }
+
+    public void AddCounterCounter()
+    {
+        counterCounter++;
+        _UI.UpdateBlockCounter(counterCounter);
+        if (counterCounter == 5)
+        {
+            _PC.Heal(5);
+            ResetBlockCounter();
+        }
+    }
+
+    public void ResetCounterCounter()
+    {
+        counterCounter = 0;
+        _UI.UpdateCounterCounter(counterCounter);
     }
 
     public void OnBreadBlocked()
@@ -70,5 +91,6 @@ public class GameManager : Singleton<GameManager>
     public void OnBreadCountered()
     {
         AddScore(3);
+        AddCounterCounter();
     }
 }

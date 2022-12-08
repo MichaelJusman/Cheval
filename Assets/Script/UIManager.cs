@@ -35,11 +35,6 @@ public class UIManager : Singleton<UIManager>
     {
         blockText.text = "Block : " + _bcounter;
     }
-
-    public void ResetBlockCounter()
-    {
-        blockText.text = "Block : " + "0";
-    }
     
     public void UpdateCounterCounter(int _ccounter)
     {
