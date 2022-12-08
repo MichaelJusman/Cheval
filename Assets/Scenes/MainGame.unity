@@ -2500,16 +2500,17 @@ MonoBehaviour:
   - {fileID: 1802375159}
   - {fileID: 2134689438}
   breadType:
-  - {fileID: 4304604267846281487, guid: d434e9da13cf2e849be577264b95ecb8, type: 3}
-  - {fileID: 3063869756218121280, guid: b13046ba9e0f3eb41b63b8309f183e97, type: 3}
-  - {fileID: 5819990733954606703, guid: 6967121abab8df046a5838bc78727c6f, type: 3}
+  - {fileID: 7140974007672616603, guid: dfdfeebbbff6b1c458c927ede88fbcf2, type: 3}
+  - {fileID: 3218048868308940917, guid: a0d1a951deb1ed141af90719352ffd62, type: 3}
+  - {fileID: 3774503014757972930, guid: 46ecd29fda61a3146a81f7f2858c478b, type: 3}
+  - {fileID: 1552521286003753759, guid: 0b033eee00a43ac4399ba4a5fe0973e8, type: 3}
   bread: []
   spawnCount: 10
   positionToMoveTo: {x: 0, y: 0}
-  baguetteSpeed: 30
-  croissantSpeed: 30
+  baguetteSpeed: 80
+  croissantSpeed: 80
   cromerangTime: 3
-  broischeSpeed: 30
+  broischeSpeed: 80
 --- !u!4 &994811333
 Transform:
   m_ObjectHideFlags: 0
