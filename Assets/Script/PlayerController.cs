@@ -13,7 +13,7 @@ public class PlayerController : Singleton<PlayerController>
     [Header("Player Variables")]
     public int maxHealth = 100;
     public int healthBonus = 0;
-    public int healing = 5;
+    public int healing;
     public int currentHealth;
 
     [Header("Movement Variables")]
@@ -196,6 +196,18 @@ public class PlayerController : Singleton<PlayerController>
         }
     }
 
+    public void Heal(int _heal)
+    {
+        if (currentHealth < maxHealth)
+        {
+            currentHealth += _heal;
+            _UI.UpdateHealthBar(currentHealth);
+        }
+        else
+        {
+            _GM.AddScore(1);
+        }
+    }
 
 
     /// <summary>
@@ -205,15 +217,13 @@ public class PlayerController : Singleton<PlayerController>
     public void TakeDamage(int _damage)
     {
         currentHealth -= _damage;
-
-        
-
+        _UI.UpdateHealthBar(currentHealth);
+        _UI.ResetBlockCounter();
         if (currentHealth < 0)
         {
             Die();
         }
-
-        _UI.UpdateHealthBar(currentHealth);
+        
     }
 
     /// <summary>
@@ -406,6 +416,7 @@ public class PlayerController : Singleton<PlayerController>
             enemy.GetComponent<Bread>().Destroy();
             Debug.Log("We block " + enemy.name);
             _GM.OnBreadtBlocked();
+            _GM.AddBlockCounter();
             //Destroy(enemy);
         }
 

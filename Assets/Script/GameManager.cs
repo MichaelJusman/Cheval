@@ -19,6 +19,9 @@ public class GameManager : Singleton<GameManager>
     public int score;
     public int scoreMultiplier = 1;
 
+    public int blockCounter;
+    public int counterCounter;
+
     public void ChangeGameState(GameState _gameState)
     {
         gameState = _gameState;
@@ -43,6 +46,19 @@ public class GameManager : Singleton<GameManager>
     {
         score += _score * scoreMultiplier;
         _UI.UpdateScore(score);
+    }
+
+    public void AddBlockCounter()
+    {
+        blockCounter ++;
+        _UI.UpdateHealthBar(blockCounter);
+        if (blockCounter == 10)
+        {
+            _PC.Heal(5);
+            blockCounter = 0;
+            _UI.UpdateHealthBar(blockCounter);
+        }
+
     }
 
     public void OnBreadtBlocked()

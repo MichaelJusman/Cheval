@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public class UIManager : Singleton<UIManager>
 {
     public TMP_Text scoreText;
+    public TMP_Text blockText;
+    public TMP_Text counterText;
 
     public Slider healthBarSlider;
     public TMP_Text healthBarText;
@@ -26,6 +29,21 @@ public class UIManager : Singleton<UIManager>
 
     public void UpdateScore(int _score)
     {
-        scoreText.text = "Score:" + _score;
+        scoreText.text = "Score: " + _score;
+    }
+
+    public void UpdateBlockCounter(int _bcounter)
+    {
+        blockText.text = "Block : " + _bcounter;
+    }
+
+    public void ResetBlockCounter()
+    {
+        blockText.text = "Block : " + "0";
+    }
+    
+    public void UpdateCounterCounter(int _ccounter)
+    {
+        counterText.text = "Counter : " + _ccounter;
     }
 }

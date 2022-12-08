@@ -2506,10 +2506,10 @@ MonoBehaviour:
   bread: []
   spawnCount: 10
   positionToMoveTo: {x: 0, y: 0}
-  baguetteSpeed: 100
-  croissantSpeed: 100
+  baguetteSpeed: 30
+  croissantSpeed: 30
   cromerangTime: 3
-  broischeSpeed: 100
+  broischeSpeed: 30
 --- !u!4 &994811333
 Transform:
   m_ObjectHideFlags: 0
@@ -3817,6 +3817,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroy: 0
   scoreText: {fileID: 1003242196}
+  blockText: {fileID: 1825299737}
+  counterText: {fileID: 1011977126}
   healthBarSlider: {fileID: 1180534305}
   healthBarText: {fileID: 2020210423}
 --- !u!1 &1600435508
@@ -5177,6 +5179,8 @@ MonoBehaviour:
   gameState: 1
   score: 0
   scoreMultiplier: 1
+  blockCounter: 0
+  counterCounter: 0
 --- !u!4 &2060627200
 Transform:
   m_ObjectHideFlags: 0
