@@ -219,6 +219,7 @@ public class PlayerController : Singleton<PlayerController>
         currentHealth -= _damage;
         _UI.UpdateHealthBar(currentHealth);
         _GM.ResetBlockCounter();
+        _GM.ResetCounterCounter();
         if (currentHealth <= 0)
         {
             Die();
