@@ -22,6 +22,15 @@ public class GameManager : Singleton<GameManager>
     public int blockCounter;
     public int counterCounter;
 
+
+    public void Start()
+    {
+        blockCounter = 0;
+        _UI.UpdateBlockCounter(blockCounter);
+        counterCounter = 0;
+        _UI.UpdateCounterCounter(counterCounter);
+    }
+
     public void ChangeGameState(GameState _gameState)
     {
         gameState = _gameState;
@@ -68,7 +77,7 @@ public class GameManager : Singleton<GameManager>
     public void AddCounterCounter()
     {
         counterCounter++;
-        _UI.UpdateBlockCounter(counterCounter);
+        _UI.UpdateCounterCounter(counterCounter);
         if (counterCounter == 5)
         {
             _PC.Heal(5);
