@@ -385,15 +385,13 @@ public class PlayerController : Singleton<PlayerController>
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(counterPoint.position, counterRange, enemyLayers);
 
         anim.SetTrigger("Counter");
-        //punch.SetActive(true);
-        //Destroy the enemy
+
         foreach (Collider2D enemy in hitEnemies)
         {
             enemy.GetComponent<Bread>().Destroy();
             Debug.Log("We Hit " + enemy.name);
             _GM.OnBreadCountered();
             Idle();
-            //Destroy(enemy);
         }
 
         
