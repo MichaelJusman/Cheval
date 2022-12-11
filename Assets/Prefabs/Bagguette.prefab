@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1552521286003753756}
   - component: {fileID: -3703586209039922939}
   m_Layer: 3
-  m_Name: RealBagguette
+  m_Name: Bagguette
   m_TagString: Baguette
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class EnemyManager : Singleton<EnemyManager>
@@ -17,6 +18,8 @@ public class EnemyManager : Singleton<EnemyManager>
     public GameObject[] breadType;      //contains all the different bread type
     public List<GameObject> bread;      //A list of all the bread in the scene
 
+    public GameObject[] croissant;
+
     public float spawnCount = 10f;
 
     public Vector2 positionToMoveTo;
@@ -26,7 +29,7 @@ public class EnemyManager : Singleton<EnemyManager>
 
     [Header("Croissant")]
     public float croissantSpeed = 1000f;
-    public float cromerangTime = 1f;
+    public float cromerangTime = 5f;
     //public float duration = 3f;
     //public Vector2 maxDistance = new Vector2(0, 30);
     //public Vector2 startDistance = new Vector2(0, 0);
@@ -71,8 +74,8 @@ public class EnemyManager : Singleton<EnemyManager>
         if(Input.GetKeyDown(KeyCode.C))
             StartCoroutine(Cromerang());
 
-        if (Input.GetKeyDown(KeyCode.K))
-            Cromerang1();
+        //if (Input.GetKeyDown(KeyCode.K))
+        //    StartCoroutine(Croissant());
 
         if (Input.GetKeyDown(KeyCode.L))
         {
@@ -97,14 +100,29 @@ public class EnemyManager : Singleton<EnemyManager>
         float timeElapsed = 0;
         while (timeElapsed < cromerangTime)
         {
-            GameObject cromerangInstantiate = Instantiate(breadType[1], breadSpawner[2].position, breadSpawner[2].rotation);
+            GameObject cromerangInstantiate = Instantiate(croissant[0], breadSpawner[2].position, breadSpawner[2].rotation);
             Vector2 originPoint = breadSpawner[2].position;
             cromerangInstantiate.transform.position = Vector2.Lerp(originPoint, _PC.transform.position, timeElapsed / cromerangTime);
             timeElapsed += Time.deltaTime;
             yield return null;
-            
         }
+        valueToLerp = _PC.transform;
     }
+
+    //IEnumerator Croissant()
+    //{
+    //    float timeElapsed = 0;
+    //    Vector2 originPoint = breadSpawner[2].position;
+    //    while (timeElapsed < cromerangTime)
+    //    {
+    //        //croissant = Instantiate(croissant, breadSpawner[2].position, breadSpawner[2].rotation);
+    //        //croissant.transform.position = Vector2.Lerp(originPoint, _PC.transform.position, timeElapsed / cromerangTime);
+    //        timeElapsed += Time.deltaTime;
+    //        yield return null;
+    //    }
+    //    valueToLerp = _PC.transform;
+    //}
+
 
     void Cromerang1()
     {
