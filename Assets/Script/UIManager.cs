@@ -13,6 +13,13 @@ public class UIManager : Singleton<UIManager>
     public Slider healthBarSlider;
     public TMP_Text healthBarText;
 
+    public GameObject losePanel;
+
+    public void Start()
+    {
+        losePanel.SetActive(false);
+    }
+
 
     public void SetMaxHealth(int _health)
     {
@@ -39,5 +46,10 @@ public class UIManager : Singleton<UIManager>
     public void UpdateCounterCounter(int _ccounter)
     {
         counterText.text = "Counter : " + _ccounter;
+    }
+
+    public void ActivateLosePanel()
+    {
+        losePanel.SetActive(true);
     }
 }

@@ -234,6 +234,8 @@ public class PlayerController : Singleton<PlayerController>
     {
         Debug.Log("im ded yo!");
         Destroy(this.gameObject);
+        _UI.ActivateLosePanel();
+        _EM.StopMusic();
     }
 
     /// <summary>

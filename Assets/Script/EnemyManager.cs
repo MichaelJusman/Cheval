@@ -49,9 +49,11 @@ public class EnemyManager : Singleton<EnemyManager>
 
     Animator anim;
 
+    public AudioSource audioSource;
+
     private void Start()
     {
-
+        audioSource.Play();
     }
 
     private void Update()
@@ -169,6 +171,11 @@ public class EnemyManager : Singleton<EnemyManager>
             yield return null;
         }
         transform.position = targetPosition;
+    }
+
+    public void StopMusic()
+    {
+        audioSource.Stop();
     }
 
 }
