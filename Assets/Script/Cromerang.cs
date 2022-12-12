@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bread : GameBehaviour
+public class Cromerang : GameBehaviour
 {
-
-    //public BreadType breadType;  <-- make EnemyManager a Singleton first!!!
-
+    // Start is called before the first frame update
     int maxHealth = 1;
 
     private void Start()
@@ -33,15 +31,13 @@ public class Bread : GameBehaviour
     {
         if (collision.collider.CompareTag("Player"))
         {
+            _EM.StopCromerang();
             Debug.Log("I hit you");
             Destroy(gameObject);
+            
         }
 
+        _EM.StopCromerang();
         Destroy(gameObject);
     }
-
-
-
-
-
 }

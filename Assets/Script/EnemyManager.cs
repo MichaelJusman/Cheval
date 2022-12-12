@@ -73,7 +73,7 @@ public class EnemyManager : Singleton<EnemyManager>
         }
 
         if(Input.GetKeyDown(KeyCode.C))
-            StartCoroutine(Cromerang());
+            StartCoroutine(Cromerang2());
 
         //if (Input.GetKeyDown(KeyCode.K))
         //    StartCoroutine(Croissant());
@@ -99,15 +99,34 @@ public class EnemyManager : Singleton<EnemyManager>
     IEnumerator Cromerang()
     {
         float timeElapsed = 0;
+        GameObject cromerangInstantiate = Instantiate(croissant[0], breadSpawner[2].position, breadSpawner[2].rotation);
+        Vector2 originPoint = breadSpawner[2].position;
         while (timeElapsed < cromerangTime)
+            {
+          
+                cromerangInstantiate.transform.position = Vector2.Lerp(originPoint, _PC.transform.position, timeElapsed / cromerangTime);
+                timeElapsed += Time.deltaTime;
+                yield return null;
+            }
+        valueToLerp = _PC.transform;
+    }
+
+    public IEnumerator Cromerang2()
+    {
+        Vector3 endPos =  _PC.transform.position;
+        GameObject cromerangInstantiate = Instantiate(croissant[0], breadSpawner[2].position, breadSpawner[2].rotation);
+        Vector3 originPoint = breadSpawner[2].position;
+        while (Vector3.Distance(originPoint, endPos) > 0.3f)
         {
-            GameObject cromerangInstantiate = Instantiate(croissant[0], breadSpawner[2].position, breadSpawner[2].rotation);
-            Vector2 originPoint = breadSpawner[2].position;
-            cromerangInstantiate.transform.position = Vector2.Lerp(originPoint, _PC.transform.position, timeElapsed / cromerangTime);
-            timeElapsed += Time.deltaTime;
+            Debug.Log("CROOMERINGTIME");
+            cromerangInstantiate.transform.position = Vector3.MoveTowards(cromerangInstantiate.transform.position, endPos, Time.deltaTime * croissantSpeed);
             yield return null;
         }
-        valueToLerp = _PC.transform;
+    }
+
+    public void StopCromerang()
+    {
+        StopCoroutine(Cromerang2());
     }
 
     //IEnumerator Croissant()
