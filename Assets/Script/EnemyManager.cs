@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class EnemyManager : Singleton<EnemyManager>
@@ -39,6 +40,8 @@ public class EnemyManager : Singleton<EnemyManager>
     //float timeElapsed;
     //float lerpDuration = 3f;
     Transform valueToLerp;
+    Transform moveToPos;
+    bool reverse = false;
 
     private float startTime;
 
@@ -78,9 +81,9 @@ public class EnemyManager : Singleton<EnemyManager>
         //if (Input.GetKeyDown(KeyCode.K))
         //    StartCoroutine(Croissant());
 
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.B))
         {
-            anim.SetTrigger("Beta");
+            Boomerang();
         }
     }
 
@@ -115,13 +118,23 @@ public class EnemyManager : Singleton<EnemyManager>
     {
         Vector3 endPos =  _PC.transform.position;
         GameObject cromerangInstantiate = Instantiate(croissant[0], breadSpawner[2].position, breadSpawner[2].rotation);
-        Vector3 originPoint = breadSpawner[2].position;
+        Vector3 originPoint = breadSpawner[2].transform.position;
         while (Vector3.Distance(originPoint, endPos) > 0.3f)
         {
             Debug.Log("CROOMERINGTIME");
             cromerangInstantiate.transform.position = Vector3.MoveTowards(cromerangInstantiate.transform.position, endPos, Time.deltaTime * croissantSpeed);
+
+            //moveToPos = reverse ? originPoint : endPos;
+            //reverse = !reverse;
+            //break;
+
             yield return null;
         }
+    }
+
+    public void Boomerang()
+    {
+        GameObject cromerangInstantiate = Instantiate(croissant[0], breadSpawner[2].position, breadSpawner[2].rotation);
     }
 
     public void StopCromerang()
