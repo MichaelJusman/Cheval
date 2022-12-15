@@ -41,7 +41,6 @@ public class EnemyManager : Singleton<EnemyManager>
     //float lerpDuration = 3f;
     Transform valueToLerp;
     Transform moveToPos;
-    bool reverse = false;
 
     private float startTime;
 
@@ -84,6 +83,7 @@ public class EnemyManager : Singleton<EnemyManager>
         if (Input.GetKeyDown(KeyCode.B))
         {
             Boomerang();
+            
         }
     }
 

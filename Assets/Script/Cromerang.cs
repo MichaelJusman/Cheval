@@ -8,12 +8,44 @@ public class Cromerang : GameBehaviour
     // Start is called before the first frame update
     int maxHealth = 1;
 
-    Transform moveToPos;
-    bool reverse = false;
+    [Header("Boomerang Variables")]
+    bool isBoomin;
+    Vector2 startPos;
+    GameObject player;
 
     private void Start()
     {
         Physics2D.IgnoreLayerCollision(3, 3);
+        isBoomin = false;
+        StartCoroutine(Boomerang());
+
+    }
+
+    private void Update()
+    {
+        transform.Rotate(0, Time.deltaTime * 500, 0);
+
+        if(isBoomin)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, Time.deltaTime * 40);
+        }
+
+        if(!isBoomin)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, startPos, Time.deltaTime * 40);
+        }
+
+        if (!isBoomin && Vector2.Distance(startPos, transform.position) < 1.3f)
+        {
+            Die();
+        }
+    }
+
+    IEnumerator Boomerang()
+    {
+        isBoomin = true;
+        yield return new WaitForSeconds(2f);
+        isBoomin = false;
     }
 
     public void Destroy()
@@ -45,14 +77,14 @@ public class Cromerang : GameBehaviour
         Destroy(gameObject);
     }
 
-    public IEnumerator Boomerang()
-    {
-        Transform startPos = _EM.breadSpawner[2];
-        Transform endPos = _PC.transform;
+    //public IEnumerator Boomerang()
+    //{
+    //    Transform startPos = _EM.breadSpawner[2];
+    //    Transform endPos = _PC.transform;
         
 
-        moveToPos = reverse ? startPos : endPos;
-        reverse = !reverse;
-        yield return null;
-    }
+    //    moveToPos = reverse ? startPos : endPos;
+    //    reverse = !reverse;
+    //    yield return null;
+    //}
 }
