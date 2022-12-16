@@ -10,11 +10,13 @@ public enum GameState
     Title,
     Playing,
     Paused,
-    GameOver
+    GameOver,
+    Win
 }
 public class GameManager : Singleton<GameManager>
 {
     public GameState gameState;
+    bool isPlaying;
 
     public int score;
     public int scoreMultiplier = 1;
@@ -29,12 +31,23 @@ public class GameManager : Singleton<GameManager>
         _UI.UpdateBlockCounter(blockCounter);
         counterCounter = 0;
         _UI.UpdateCounterCounter(counterCounter);
+        ChangeGameState(GameState.Playing);
+        StartCoroutine(Victory());
     }
 
     public void ChangeGameState(GameState _gameState)
     {
         gameState = _gameState;
     }
+
+    private void Update()
+    {
+        if (isPlaying == false)
+        {
+            _UI.ActivateWinPanel();
+        }
+    }
+
     public void StartGame()
     {
         SceneManager.LoadScene("MainGame");
@@ -44,6 +57,7 @@ public class GameManager : Singleton<GameManager>
     public void LoadTitle()
     {
         SceneManager.LoadScene("Title");
+        ChangeGameState(GameState.Title);
     }
 
     public void QuitGame()
@@ -101,5 +115,19 @@ public class GameManager : Singleton<GameManager>
     {
         AddScore(3);
         AddCounterCounter();
+    }
+
+    IEnumerator Victory()
+    {
+        isPlaying = true;
+        new WaitForSeconds(138);
+        isPlaying = false;
+        ChangeGameState(GameState.Win);
+        yield return null;
+    }
+
+    public string GetSceneName()
+    {
+        return SceneManager.GetActiveScene().name;
     }
 }

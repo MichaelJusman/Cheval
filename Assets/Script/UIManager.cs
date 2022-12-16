@@ -6,6 +6,9 @@ using TMPro;
 
 public class UIManager : Singleton<UIManager>
 {
+    public float currentScore;
+    public float bestScore;
+    
     public TMP_Text scoreText;
     public TMP_Text blockText;
     public TMP_Text counterText;
@@ -14,10 +17,14 @@ public class UIManager : Singleton<UIManager>
     public TMP_Text healthBarText;
 
     public GameObject losePanel;
+    public GameObject winPanel;
+    public TMP_Text yourScore;
+    public TMP_Text highScore;
 
     public void Start()
     {
         losePanel.SetActive(false);
+        winPanel.SetActive(false);
     }
 
 
@@ -51,5 +58,20 @@ public class UIManager : Singleton<UIManager>
     public void ActivateLosePanel()
     {
         losePanel.SetActive(true);
+        _GM.ChangeGameState(GameState.GameOver);
+    }
+
+    public void ActivateWinPanel()
+    {
+        winPanel.SetActive(true);
+        yourScore.text = currentScore.ToString("F3");
+        highScore.text = bestScore.ToString("F3");
+
+        if (currentScore <= bestScore)
+        {
+            bestScore = currentScore;
+            PlayerPrefs.SetFloat("BestTime" + _GM.GetSceneName(), bestScore);
+            highScore.text = bestScore.ToString("F3") + " !! NEW BEST !!";
+        }
     }
 }
