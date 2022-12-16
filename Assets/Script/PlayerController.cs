@@ -159,6 +159,12 @@ public class PlayerController : Singleton<PlayerController>
             Debug.Log("Im blocking");
         }
 
+        if (Input.GetKey(KeyCode.H))
+        {
+            Block();
+            Debug.Log("Im blocking");
+        }
+
         WallSlide();
 
         WallJump();
