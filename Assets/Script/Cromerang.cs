@@ -19,7 +19,7 @@ public class Cromerang : GameBehaviour
         isBoomin = false;
 
         player = GameObject.Find("Player");
-        startPos = GameObject.Find("Hand2");
+        startPos = GameObject.Find("hands2");
 
 
         StartCoroutine(Boomerang());
@@ -28,7 +28,7 @@ public class Cromerang : GameBehaviour
 
     private void Update()
     {
-        transform.Rotate(0, 0, Time.deltaTime * 200);
+        transform.Rotate(0, 0, Time.deltaTime * 100);
 
         if(isBoomin)
         {
@@ -37,7 +37,7 @@ public class Cromerang : GameBehaviour
 
         if(!isBoomin)
         {
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(startPos.transform.position.x, transform.position.y), Time.deltaTime * 20);
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(startPos.transform.position.x + 1, transform.position.y), Time.deltaTime * 20);
         }
 
         if (!isBoomin && Vector2.Distance(startPos.transform.position, transform.position) < 1.3f)
@@ -49,7 +49,7 @@ public class Cromerang : GameBehaviour
     IEnumerator Boomerang()
     {
         isBoomin = true;
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(.3f);
         isBoomin = false;
     }
 
