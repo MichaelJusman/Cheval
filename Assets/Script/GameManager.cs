@@ -16,7 +16,6 @@ public enum GameState
 public class GameManager : Singleton<GameManager>
 {
     public GameState gameState;
-    bool isPlaying;
 
     public int score;
     public int scoreMultiplier = 1;
@@ -32,7 +31,6 @@ public class GameManager : Singleton<GameManager>
         counterCounter = 0;
         _UI.UpdateCounterCounter(counterCounter);
         ChangeGameState(GameState.Playing);
-        StartCoroutine(Victory());
     }
 
     public void ChangeGameState(GameState _gameState)
@@ -40,13 +38,6 @@ public class GameManager : Singleton<GameManager>
         gameState = _gameState;
     }
 
-    private void Update()
-    {
-        if (isPlaying == false)
-        {
-            _UI.ActivateWinPanel();
-        }
-    }
 
     public void StartGame()
     {
@@ -117,14 +108,14 @@ public class GameManager : Singleton<GameManager>
         AddCounterCounter();
     }
 
-    IEnumerator Victory()
-    {
-        isPlaying = true;
-        new WaitForSeconds(138);
-        isPlaying = false;
-        ChangeGameState(GameState.Win);
-        yield return null;
-    }
+    //IEnumerator Victory()
+    //{
+    //    isPlaying = true;
+    //    new WaitForSeconds(138);
+    //    isPlaying = false;
+    //    ChangeGameState(GameState.Win);
+    //    yield return null;
+    //}
 
     public string GetSceneName()
     {

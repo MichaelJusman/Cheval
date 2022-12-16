@@ -209,4 +209,10 @@ public class EnemyManager : Singleton<EnemyManager>
         audioSource.Stop();
     }
 
+    public void EndGame()
+    {
+        audioSource.Stop();
+        _UI.ActivateWinPanel();
+    }
+
 }
