@@ -39,22 +39,22 @@ public class GameManager : Singleton<GameManager>
     }
 
 
-    public void StartGame()
-    {
-        SceneManager.LoadScene("MainGame");
-        ChangeGameState(GameState.Playing);
-    }
+    //public void StartGame()
+    //{
+    //    SceneManager.LoadScene("MainGame");
+    //    ChangeGameState(GameState.Playing);
+    //}
 
-    public void LoadTitle()
-    {
-        SceneManager.LoadScene("Title");
-        ChangeGameState(GameState.Title);
-    }
+    //public void LoadTitle()
+    //{
+    //    SceneManager.LoadScene("Title");
+    //    ChangeGameState(GameState.Title);
+    //}
 
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
+    //public void QuitGame()
+    //{
+    //    Application.Quit();
+    //}
 
     public void AddScore(int _score)
     {
