@@ -86,7 +86,7 @@ public class GameManager : Singleton<GameManager>
         if (counterCounter == 5)
         {
             _PC.Heal(5);
-            ResetBlockCounter();
+            ResetCounterCounter();
         }
     }
 
