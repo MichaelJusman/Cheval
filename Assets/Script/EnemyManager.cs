@@ -87,6 +87,12 @@ public class EnemyManager : Singleton<EnemyManager>
             Boomerang();
             
         }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            EndGame();
+
+        }
     }
 
     void FireBaguette()

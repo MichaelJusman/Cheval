@@ -63,16 +63,7 @@ public class UIManager : Singleton<UIManager>
 
     public void ActivateWinPanel()
     {
-        scoreText.text = yourScore.text;
         winPanel.SetActive(true);
-        yourScore.text = currentScore.ToString("F3");
-        highScore.text = bestScore.ToString("F3");
-
-        if (currentScore <= bestScore)
-        {
-            bestScore = currentScore;
-            PlayerPrefs.SetFloat("BestTime" + _GM.GetSceneName(), bestScore);
-            highScore.text = bestScore.ToString("F3") + " !! NEW BEST !!";
-        }
+        _GM.ChangeGameState(GameState.Win);
     }
 }
