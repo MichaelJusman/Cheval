@@ -47,6 +47,7 @@ public class EnemyManager : Singleton<EnemyManager>
 
     [Header("Broiche")]
     public float broischeSpeed = 300f;
+    public float slicingTime = 2;
 
     Animator anim;
 
@@ -66,7 +67,8 @@ public class EnemyManager : Singleton<EnemyManager>
 
         if (Input.GetKeyDown(KeyCode.O))
         {
-            FireCroissant();
+            StartCoroutine(Slices());
+            //FireCroissant();
         }
 
         if (Input.GetKeyDown(KeyCode.I))
@@ -90,28 +92,41 @@ public class EnemyManager : Singleton<EnemyManager>
     void FireBaguette()
     {
         GameObject breadInstantiate = Instantiate(breadType[UnityEngine.Random.Range(0, breadType.Length)], breadSpawner[UnityEngine.Random.Range(0, breadSpawner.Length)].position, breadSpawner[UnityEngine.Random.Range(0, breadSpawner.Length)].rotation);
-        breadInstantiate.GetComponent<Rigidbody2D>().AddForce((_PC.transform.position - breadSpawner[UnityEngine.Random.Range(0, breadSpawner.Length)].position) * broischeSpeed);
+        breadInstantiate.GetComponent<Rigidbody2D>().AddForce((_PC.transform.position - breadSpawner[UnityEngine.Random.Range(0, breadSpawner.Length)].position) * baguetteSpeed);
     }
 
-    void FireCroissant()
-    {
-        GameObject breadInstantiate = Instantiate(breadType[0], breadSpawner[0].position, breadSpawner[0].rotation);
-        breadInstantiate.GetComponent<Rigidbody2D>().AddForce(breadSpawner[0].right * -baguetteSpeed);
-    }
+    //void FireCroissant()
+    //{
+    //    GameObject breadInstantiate = Instantiate(breadType[0], breadSpawner[0].position, breadSpawner[0].rotation);
+    //    breadInstantiate.GetComponent<Rigidbody2D>().AddForce(breadSpawner[0].right * -baguetteSpeed);
+    //}
 
-    IEnumerator Cromerang()
+    //IEnumerator Cromerang()
+    //{
+    //    float timeElapsed = 0;
+    //    GameObject cromerangInstantiate = Instantiate(croissant[0], breadSpawner[2].position, breadSpawner[2].rotation);
+    //    Vector2 originPoint = breadSpawner[2].position;
+    //    while (timeElapsed < cromerangTime)
+    //        {
+          
+    //            cromerangInstantiate.transform.position = Vector2.Lerp(originPoint, _PC.transform.position, timeElapsed / cromerangTime);
+    //            timeElapsed += Time.deltaTime;
+    //            yield return null;
+    //        }
+    //    valueToLerp = _PC.transform;
+    //}
+
+    public IEnumerator Slices()
     {
         float timeElapsed = 0;
-        GameObject cromerangInstantiate = Instantiate(croissant[0], breadSpawner[2].position, breadSpawner[2].rotation);
-        Vector2 originPoint = breadSpawner[2].position;
-        while (timeElapsed < cromerangTime)
-            {
-          
-                cromerangInstantiate.transform.position = Vector2.Lerp(originPoint, _PC.transform.position, timeElapsed / cromerangTime);
-                timeElapsed += Time.deltaTime;
-                yield return null;
-            }
-        valueToLerp = _PC.transform;
+        while (timeElapsed < slicingTime)
+        {
+            timeElapsed += Time.deltaTime;
+            GameObject sliceInstantiate = Instantiate(breadType[1], breadSpawner[Random.Range(0, breadSpawner.Length)].position, breadSpawner[Random.Range(0, breadSpawner.Length)].rotation);
+            sliceInstantiate.GetComponent<Rigidbody2D>().AddForce((_PC.transform.position - breadSpawner[Random.Range(0, breadSpawner.Length)].position) * broischeSpeed);
+            yield return new WaitForSeconds(0.4f);
+        }
+        yield break;
     }
 
     public IEnumerator Cromerang2()
@@ -213,6 +228,7 @@ public class EnemyManager : Singleton<EnemyManager>
     {
         audioSource.Stop();
         _UI.ActivateWinPanel();
+        StopAllCoroutines();
     }
 
 }
