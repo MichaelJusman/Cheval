@@ -600,7 +600,6 @@ GameObject:
   m_Component:
   - component: {fileID: 178133271}
   - component: {fileID: 178133270}
-  - component: {fileID: 178133269}
   m_Layer: 3
   m_Name: Barista
   m_TagString: Untagged
@@ -608,32 +607,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!61 &178133269
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 178133267}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.8, y: 1}
-  m_EdgeRadius: 0
 --- !u!212 &178133270
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1657,7 +1630,7 @@ GameObject:
   m_Component:
   - component: {fileID: 472409018}
   - component: {fileID: 472409019}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1960,7 +1933,7 @@ GameObject:
   m_Component:
   - component: {fileID: 533002991}
   - component: {fileID: 533002992}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Shieldbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3186,7 +3159,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 841690518}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: WallCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3298,7 +3271,7 @@ GameObject:
   m_Component:
   - component: {fileID: 922033201}
   - component: {fileID: 922033202}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Punch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4824,7 +4797,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1194018917}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4887,7 +4860,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1245818176}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: BlockPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5260,7 +5233,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1372107747}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: CounterPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5377,7 +5350,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2121525690}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -7196,7 +7169,7 @@ GameObject:
   - component: {fileID: 1991267855}
   - component: {fileID: 1991267854}
   - component: {fileID: 1991267856}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -7943,7 +7916,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2121525690}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7962,7 +7935,7 @@ VideoPlayer:
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
-  m_TargetTexture: {fileID: 8400000, guid: 32dadfdfa5ab9cf4f93b09e7c0b64bc2, type: 2}
+  m_TargetTexture: {fileID: 8400000, guid: 405363cb516b9a7419d31c70721c2f66, type: 2}
   m_TimeReference: 0
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: <noninit>
@@ -8015,8 +7988,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2113897779}
   - {fileID: 1429920552}
+  - {fileID: 2113897779}
   - {fileID: 1105951205}
   m_Father: {fileID: 1561819278}
   m_RootOrder: 3
