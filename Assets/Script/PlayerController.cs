@@ -43,14 +43,9 @@ public class PlayerController : Singleton<PlayerController>
     [Header("Counter Variables")]
     public float counterRange = 0.5f;
     public GameObject punch;
-    //bool isCountering = false;
-    //bool canCounter = true;
-    //public float counterStartUp = 0.3f;
 
     [Header("Block Variables")]
     public float blockRange = 1f;
-    //bool isBlocking = false;
-    //bool canBlock = true;
 
     [Header("Wall Sliding Variables")]
     public float wallSlidingSpeed = 2f;
@@ -85,7 +80,6 @@ public class PlayerController : Singleton<PlayerController>
 
         _UI.SetMaxHealth(currentHealth);
         
-        //punch.SetActive(false);
     }
 
     void Update()
@@ -121,6 +115,7 @@ public class PlayerController : Singleton<PlayerController>
             }
         }
 
+        //If the space bar is tapped, jumping height is much lower
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * tapjumpModifier);
@@ -202,6 +197,7 @@ public class PlayerController : Singleton<PlayerController>
         }
     }
 
+    //function to heal the player, if the health is full, get bonus score instead
     public void Heal(int _heal)
     {
         if (currentHealth < maxHealth)
@@ -374,17 +370,6 @@ public class PlayerController : Singleton<PlayerController>
         canStall = true;
     }
 
-    //IEnumerator Counter()
-    //{
-    //    isCountering = true;
-    //    canCounter = false;
-    //    Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(counterPoint.position, counterRange, enemyLayers);
-    //    yield return new WaitForSeconds(2);
-    //    isCountering = false;
-    //    yield return new WaitForSeconds(stallCooldown);
-    //    canCounter = true;
-    //}
-
     /// <summary>
     /// The ability to create a small hitbox infront of the player to counter-attack an enemy or projectile
     /// </summary>
@@ -401,10 +386,6 @@ public class PlayerController : Singleton<PlayerController>
             _GM.OnBreadCountered();
             Idle();
         }
-
-        
-        //yield return new WaitForSeconds(1);
-        //punch.SetActive(false);
     }
 
     /// <summary>
@@ -416,21 +397,16 @@ public class PlayerController : Singleton<PlayerController>
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(blockPoint.position, blockRange, enemyLayers);
 
         anim.SetTrigger("Block");
-        //punch.SetActive(true);
-        //Destroy the enemy
+
         foreach (Collider2D enemy in hitEnemies)
         {
             enemy.GetComponent<Bread>().Destroy();
             Debug.Log("We block " + enemy.name);
             _GM.OnBreadBlocked();
-            //Destroy(enemy);
         }
-
-        
-        //yield return new WaitForSeconds(1);
-        //punch.SetActive(false);
     }
 
+    //Force the player to reset to idle state
     void Idle()
     {
         anim.SetTrigger("Idle");

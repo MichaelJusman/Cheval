@@ -38,30 +38,13 @@ public class GameManager : Singleton<GameManager>
         gameState = _gameState;
     }
 
-
-    //public void StartGame()
-    //{
-    //    SceneManager.LoadScene("MainGame");
-    //    ChangeGameState(GameState.Playing);
-    //}
-
-    //public void LoadTitle()
-    //{
-    //    SceneManager.LoadScene("Title");
-    //    ChangeGameState(GameState.Title);
-    //}
-
-    //public void QuitGame()
-    //{
-    //    Application.Quit();
-    //}
-
     public void AddScore(int _score)
     {
         score += _score * scoreMultiplier;
         _UI.UpdateScore(score);
     }
 
+    //Add block counter, if counter reaches a certain number, heals the player
     public void AddBlockCounter()
     {
         blockCounter ++;
@@ -73,12 +56,14 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    //Reset block counter once it hits the limit
     public void ResetBlockCounter()
     {
         blockCounter = 0;
         _UI.UpdateBlockCounter(blockCounter);
     }
 
+    //Add counter counter, if counter reaches a certain number, heals the player
     public void AddCounterCounter()
     {
         counterCounter++;
@@ -90,32 +75,26 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    //Reset counter counter once it hits the limit
     public void ResetCounterCounter()
     {
         counterCounter = 0;
         _UI.UpdateCounterCounter(counterCounter);
     }
 
+    //Add score & counter when sucessfuly block
     public void OnBreadBlocked()
     {
         AddScore(1);
         AddBlockCounter();
     }
 
+    //Add score & counter when sucessfuly counter
     public void OnBreadCountered()
     {
         AddScore(3);
         AddCounterCounter();
     }
-
-    //IEnumerator Victory()
-    //{
-    //    isPlaying = true;
-    //    new WaitForSeconds(138);
-    //    isPlaying = false;
-    //    ChangeGameState(GameState.Win);
-    //    yield return null;
-    //}
 
     public string GetSceneName()
     {

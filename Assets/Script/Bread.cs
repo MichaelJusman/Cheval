@@ -11,6 +11,7 @@ public class Bread : GameBehaviour
 
     private void Start()
     {
+        //Ignoring collision on the enemy layer
         Physics2D.IgnoreLayerCollision(3, 3);
     }
 
