@@ -14,7 +14,6 @@ public class GameBehaviour : MonoBehaviour
     protected static UIManager _UI { get { return UIManager.INSTANCE; } }
     protected static PlayerController _PC { get { return PlayerController.INSTANCE; } }
     protected static SceneController _SC { get { return SceneController.INSTANCE; } }
-    protected static DifficultyController _DC { get { return DifficultyController.INSTANCE; } }
 
     /// <summary>
     /// Shuffles a list using Unity's Random
