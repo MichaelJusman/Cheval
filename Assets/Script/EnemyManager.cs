@@ -234,6 +234,7 @@ public class EnemyManager : Singleton<EnemyManager>
         audioSource.Stop();
         _UI.ActivateWinPanel();
         StopAllCoroutines();
+        Destroy(gameObject);
     }
 
 }
