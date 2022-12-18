@@ -55,6 +55,13 @@ public class EnemyManager : Singleton<EnemyManager>
     private void Start()
     {
         audioSource.Play();
+        
+        if(_DC.difficulty == Difficulty.Easy)
+            anim.SetTrigger("Easy");
+
+        if (_DC.difficulty == Difficulty.Hard)
+            anim.SetTrigger("Hard");
+
     }
 
     private void Update()
