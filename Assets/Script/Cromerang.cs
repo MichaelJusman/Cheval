@@ -16,7 +16,6 @@ public class Cromerang : GameBehaviour
         player = GameObject.Find("Player");
         startPos = GameObject.Find("hands2");
         StartCoroutine(Boomerang());
-
     }
 
     private void Update()
