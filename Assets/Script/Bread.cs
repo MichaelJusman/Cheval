@@ -5,8 +5,6 @@ using UnityEngine;
 public class Bread : GameBehaviour
 {
 
-    //public BreadType breadType;  <-- make EnemyManager a Singleton first!!!
-
     int maxHealth = 1;
 
     private void Start()

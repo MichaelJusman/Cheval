@@ -30,7 +30,6 @@ public class Cromerang : GameBehaviour
         if(!isBoomin)
         {
             transform.position = Vector2.MoveTowards(transform.position, startPos.transform.position, Time.deltaTime * 20);
-            //transform.position = Vector2.MoveTowards(transform.position, new Vector2(startPos.transform.position.x, transform.position.y), Time.deltaTime * 20);
         }
 
         if (!isBoomin && Vector2.Distance(startPos.transform.position, transform.position) < 1.3f)
